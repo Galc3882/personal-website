@@ -3,18 +3,22 @@
 import About from "@/components/About";
 import Cards from "@/components/Cards";
 import Contact from "@/components/Contact";
-import RadioButtons from "@/components/RadioButtons";
+import CategorySelect from "@/components/CategorySelect";
+import { CardCategory } from "@/types/Categories";
 import { useState } from "react";
 
 export default function HomePage() {
-  const [category, setCategory] = useState("education");
+  const [category, setCategory] = useState<CardCategory>("Education");
+  const handleCategoryChange = (category: CardCategory) => {
+    setCategory(category);
+  };
   return (
     <>
       <Contact />
       <div className="px-10">
         <About />
         <div className="h-4" />
-        <RadioButtons />
+        <CategorySelect onCategoryChange={handleCategoryChange} />
         <Cards category={category} />
       </div>
     </>

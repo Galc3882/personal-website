@@ -1,13 +1,5 @@
 import Image from "next/image";
-
-interface CardProps {
-  title: string;
-  place: string;
-  dates: string;
-  description: string;
-  bulletPoints: string[];
-  icon: string;
-}
+import { CardData } from "@/types/CardData";
 
 export default function Card({
   title,
@@ -16,7 +8,7 @@ export default function Card({
   description,
   bulletPoints,
   icon,
-}: CardProps) {
+}: CardData) {
   return (
     <div className="mx-auto my-5 flex max-w-3xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg">
       <div className="flex flex-row gap-3">
@@ -33,9 +25,11 @@ export default function Card({
       </div>
       <p className="text-md max-w-6xl">{description}</p>
       <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7">
-        {bulletPoints.map((bulletPoint) => {
+        {bulletPoints.map((bulletPoint, index) => {
           return (
-            <li className="text-md max-w-6xl text-justify">{bulletPoint}</li>
+            <li key={index} className="text-md max-w-6xl text-justify">
+              {bulletPoint}
+            </li>
           );
         })}
       </ul>
