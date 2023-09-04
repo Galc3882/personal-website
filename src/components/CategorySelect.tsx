@@ -18,7 +18,7 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
   };
   return (
     <div className="flex justify-center">
-      <div className="relative z-0 flex items-center justify-around overflow-hidden bg-darker">
+      <div className="relative z-0 flex items-center justify-around overflow-hidden rounded-md bg-darker">
         <motion.svg
           width="100%"
           height="48"
