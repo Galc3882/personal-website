@@ -8,7 +8,7 @@ import { CardCategory } from "@/types/Categories";
 import { useState } from "react";
 
 export default function HomePage() {
-  const [category, setCategory] = useState<CardCategory>("Education");
+  const [category, setCategory] = useState<CardCategory>("Experience");
   const handleCategoryChange = (category: CardCategory) => {
     setCategory(category);
   };

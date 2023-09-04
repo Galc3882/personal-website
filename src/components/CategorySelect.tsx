@@ -13,8 +13,9 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
   const handleButtonClick = (category: CardCategory, index: number) => {
     setSelected(index);
     onCategoryChange(category);
+    const buttonsContainer = document.querySelector(".category-buttons");
+    buttonsContainer?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
-
   return (
     <div className="flex justify-center">
       <div className="relative z-0 flex items-center justify-around overflow-hidden bg-darker">
@@ -42,7 +43,7 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
         {buttons.map((button, index) => (
           <span
             key={button}
-            className={`z-20 w-[120px] flex-1 cursor-pointer select-none py-3 text-center`}
+            className={`category-buttons z-20 w-[120px] flex-1 cursor-pointer select-none py-3 text-center`}
             onClick={() => handleButtonClick(button, index)}
           >
             {button}
