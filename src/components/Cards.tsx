@@ -174,7 +174,13 @@ const Cards: React.FC<Props> = ({ category }) => {
 
   const handleCardClick = (index: number) => {
     if (selectedCard === index) setSelectedCard(null);
-    else setSelectedCard(index);
+    else {
+      const cardElement = document.getElementById(`card-${index}`);
+      if (cardElement) {
+        cardElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      setSelectedCard(index);
+    }
   };
 
   return (
@@ -185,17 +191,21 @@ const Cards: React.FC<Props> = ({ category }) => {
             return (
               <ExperienceCard
                 key={index}
+                listId={`card-${index}`}
                 {...card}
                 selectedCard={selectedCard === index}
                 handleCardClick={() => handleCardClick(index)}
               />
             );
           case "Education":
-            return <EducationCard key={index} {...card} />;
+            return (
+              <EducationCard key={index} listId={`card-${index}`} {...card} />
+            );
           case "Projects":
             return (
               <ProjectCard
                 key={index}
+                listId={`card-${index}`}
                 {...card}
                 selectedCard={selectedCard === index}
                 handleCardClick={() => handleCardClick(index)}

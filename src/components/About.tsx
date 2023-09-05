@@ -2,51 +2,49 @@ import DownloadIcon from "./icons/Download";
 
 export default function About() {
   return (
-    <section className="grid min-h-screen w-full grid-cols-1 justify-items-center gap-0 sm:grid-cols-2 sm:gap-5">
-      <div className="max-w-md1 sm:ml-10 sm:place-self-center">
+    <section className="grid min-h-screen w-full grid-cols-2 justify-items-center gap-5 tablet:grid-cols-[10fr_9fr] stablet:min-h-[96vh] stablet:grid-cols-1 stablet:gap-0">
+      <div className="ml-10 place-self-center tablet:ml-2 stablet:mx-5">
         <div className="bg-dark">
-          <div className="mb-0 bg-dark sm:mb-5">
-            <h1 className="m-0 text-center text-5xl sm:inline sm:text-left sm:text-6xl">
+          <div className="mb-5 tablet:mt-20 stablet:my-1">
+            <h1 className="m-0 inline text-left text-6xl tablet:text-5xl stablet:block stablet:text-center">
               Gal Cohen
             </h1>
-            <br className="sm:show hidden" />
-            <h3 className="m-0 text-center text-3xl sm:text-left sm:text-4xl">
+            <h3 className="m-0 text-left text-4xl tablet:text-2xl stablet:text-center">
               Robotics Engineer & Developer
             </h3>
-            <br className="sm:show hidden" />
-            <h4 className="m-0 text-center text-2xl sm:text-left sm:text-3xl">
+            <h4 className="m-0 text-left text-3xl tablet:text-xl stablet:text-center stablet:text-lg">
               Interested In Robotics Internships
             </h4>
           </div>
-          <p className="text-md hidden max-w-lg bg-dark text-justify sm:block">
-            My name is Gal and I am studying Engineering Science at the
-            university of Toronto and will graduate in 2025 with a specialty in
-            Robotics and a minor in Business and AI. For as long as I can
-            remember I’ve been fascinated with technology and I intend to
-            continuously learn about new technological developments.
-          </p>
-          <div className="shadow-3xl m-5 block h-fit max-w-md place-self-center rounded-3xl bg-darker sm:hidden ">
+          <div className="hidden h-fit max-w-xs place-self-center rounded-3xl bg-darker shadow-3xl-inner stablet:mx-auto stablet:block ">
             <img
               className="rounded-3xl"
               src="images/cropped.png"
               alt="Portrait of Gal"
             />
           </div>
+          <p className="block max-w-lg text-justify text-base stablet:my-3">
+            My name is Gal and I am studying Engineering Science at the
+            university of Toronto and will graduate in 2025 with a specialty in
+            Robotics and a minor in Business and AI.
+            <a className="stablet:hidden">
+              &nbsp;For as long as I can remember I’ve been fascinated with
+              technology and I intend to continuously learn about new
+              technological developments.
+            </a>
+          </p>
         </div>
-        <p className="text-md block max-w-prose bg-dark text-justify sm:hidden">
-          My name is Gal and I am studying Engineering Science at the university
-          of Toronto and will graduate in 2025 with a specialty in robotics and
-          a minor in business and AI.
-        </p>
         <a
-          className="mt-6 inline-flex gap-4 rounded-xl bg-button p-3 py-5 shadow-2xl hover:bg-buttonHover active:shadow-none"
+          className="mt-6 inline-flex gap-4 rounded-xl bg-button p-3 py-5 text-lg shadow-2xl hover:bg-buttonHover stablet:mx-auto stablet:mt-5 stablet:block stablet:w-fit stablet:py-3 phone:mt-0 phone:py-2 phone:text-base"
           href="Resume-Gal-Cohen.pdf"
         >
           Open Resume
-          <DownloadIcon />
+          <div className="stablet:ml-3 stablet:inline-block phone:hidden">
+            <DownloadIcon />
+          </div>
         </a>
       </div>
-      <div className="hidden h-fit max-w-md place-self-center rounded-3xl bg-darker shadow-3xl-inner sm:block ">
+      <div className="h-fit max-w-md place-self-center rounded-3xl bg-darker shadow-3xl-inner stablet:hidden ">
         <img
           className="rounded-3xl"
           src="images/cropped.png"

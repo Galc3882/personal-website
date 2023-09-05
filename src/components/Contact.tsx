@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <div className="absolute hidden bg-dark pl-5 pt-5 sm:flex ">
+    <div className="absolute flex bg-dark pl-5 pt-5 stablet:fixed stablet:bottom-0 stablet:z-40 stablet:w-full stablet:justify-around stablet:px-0 stablet:py-1">
       <a href="https://github.com/Galc3882">
         <svg
           fill="#fff"

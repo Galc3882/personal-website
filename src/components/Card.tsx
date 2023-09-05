@@ -15,7 +15,7 @@ const cardVariants = {
 };
 
 export function ExperienceCard({
-  key,
+  listId,
   title,
   place,
   dates,
@@ -25,7 +25,7 @@ export function ExperienceCard({
   image,
   selectedCard,
   handleCardClick,
-}: CardData & { key: number } & { selectedCard: boolean } & {
+}: CardData & { listId: string } & { selectedCard: boolean } & {
   handleCardClick: () => void;
 }) {
   return (
@@ -36,7 +36,8 @@ export function ExperienceCard({
       animate={selectedCard ? "selected" : "unselected"}
       variants={cardVariants}
       viewport={{ once: true }}
-      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg"
+      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
+      id={listId}
     >
       {selectedCard && (
         <div className="inline-block cursor-pointer" onClick={handleCardClick}>
@@ -60,7 +61,7 @@ export function ExperienceCard({
       {!selectedCard && (
         <>
           <div className="flex flex-row gap-3">
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center tablet:min-w-[50px]">
               <Image
                 src={icon!}
                 alt="icon"
@@ -71,23 +72,29 @@ export function ExperienceCard({
             </div>
             <div className="flex flex-col justify-center">
               <div className="flex flex-row items-end gap-3">
-                <h1 className={`max-w-xl text-2xl font-bold`}>{title}</h1>
-                <h2 className="text-md">{place}</h2>
+                <h1 className={`max-w-xl text-2xl font-bold tablet:text-lg`}>
+                  {title}
+                </h1>
+                <h2 className="text-base tablet:hidden">{place}</h2>
               </div>
-              <h2 className="text-md">{dates}</h2>
+              <h2 className="hidden text-lg tablet:block">{place}</h2>
+              <h2 className="text-base">{dates}</h2>
             </div>
           </div>
           {description.map((paragraph, index) => {
             return (
-              <p key={index} className="text-md max-w-6xl text-justify">
+              <p key={index} className="max-w-6xl text-justify text-base">
                 {paragraph}
               </p>
             );
           })}
-          <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7">
+          <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:ml-3 tablet:mr-0">
             {bulletPoints!.map((bulletPoint, index) => {
               return (
-                <li key={index} className="text-md max-w-6xl text-justify">
+                <li
+                  key={index}
+                  className="max-w-6xl text-justify text-base tablet:text-left"
+                >
                   {bulletPoint}
                 </li>
               );
@@ -96,7 +103,7 @@ export function ExperienceCard({
           {image && (
             <button
               onClick={handleCardClick}
-              className="relative mx-auto my-0 w-64 rounded-3xl bg-button px-4 py-2 text-lg font-medium shadow-2xl transition-colors duration-300 hover:bg-buttonHover"
+              className="relative mx-auto my-0 w-64 cursor-pointer rounded-3xl bg-button px-4 py-2 text-lg font-medium shadow-2xl transition-colors duration-300 hover:bg-buttonHover tablet:hidden"
             >
               Click to see a sneak peek
             </button>
@@ -108,6 +115,7 @@ export function ExperienceCard({
 }
 
 export function EducationCard({
+  listId,
   title,
   place,
   dates,
@@ -115,17 +123,18 @@ export function EducationCard({
   bulletPoints,
   subBulletPoints,
   icon,
-}: CardData) {
+}: CardData & { listId: string }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ delay: 0.15, easeIn: true, duration: 0.3 }}
       viewport={{ once: true }}
-      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg"
+      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
+      id={listId}
     >
       <div className="flex flex-row gap-3">
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center tablet:min-w-[80px] phone:min-w-[60px]">
           <Image
             src={icon!}
             alt="icon"
@@ -135,29 +144,34 @@ export function EducationCard({
           />
         </div>
         <div className="flex flex-col justify-center">
-          <h1 className={`max-w-2xl text-2xl font-bold`}>{title}</h1>
+          <h1 className={`max-w-2xl text-2xl font-bold tablet:text-lg`}>
+            {title}
+          </h1>
           <h2 className="text-lg">{place}</h2>
-          <h2 className="text-md">{dates}</h2>
+          <h2 className="text-base">{dates}</h2>
         </div>
       </div>
       {description.map((paragraph, index) => {
         return (
-          <p key={index} className="text-md max-w-6xl text-justify">
+          <p key={index} className="max-w-6xl text-justify text-base">
             {paragraph}
           </p>
         );
       })}
-      <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7">
+      <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:ml-3 tablet:mr-0">
         {bulletPoints!.map((bulletPoint, index) => {
           return (
-            <li key={index} className="text-md max-w-6xl text-justify">
+            <li
+              key={index}
+              className="max-w-6xl text-justify text-base tablet:text-left"
+            >
               {bulletPoint}
               {subBulletPoints && bulletPoints!.length - 1 == index && (
-                <ul className="ml-6 list-disc">
+                <ul className="ml-6 list-disc tablet:ml-3">
                   {subBulletPoints.map((subBulletPoint, subIndex) => (
                     <li
                       key={subIndex}
-                      className="text-md max-w-6xl text-justify"
+                      className="max-w-6xl text-justify text-base tablet:text-left"
                     >
                       {subBulletPoint}
                     </li>
@@ -173,6 +187,7 @@ export function EducationCard({
 }
 
 export function ProjectCard({
+  listId,
   title,
   dates,
   description,
@@ -180,7 +195,7 @@ export function ProjectCard({
   image,
   selectedCard,
   handleCardClick,
-}: CardData & { key: number } & { selectedCard: boolean } & {
+}: CardData & { listId: string } & { selectedCard: boolean } & {
   handleCardClick: () => void;
 }) {
   return (
@@ -191,7 +206,8 @@ export function ProjectCard({
       animate={selectedCard ? "selected" : "unselected"}
       variants={cardVariants}
       viewport={{ once: true }}
-      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg"
+      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
+      id={listId}
     >
       {selectedCard && (
         <div className="inline-block cursor-pointer" onClick={handleCardClick}>
@@ -217,9 +233,11 @@ export function ProjectCard({
           <div className="flex flex-row justify-between gap-3">
             <div className="flex flex-col justify-center">
               <div className="flex flex-row items-end gap-3">
-                <h1 className={`max-w-xl text-2xl font-bold`}>{title}</h1>
+                <h1 className={`max-w-xl text-2xl font-bold tablet:text-lg`}>
+                  {title}
+                </h1>
               </div>
-              <h2 className="text-md">{dates}</h2>
+              <h2 className="text-base">{dates}</h2>
             </div>
             <div className="flex flex-col justify-center">
               <a href={link}>
@@ -229,7 +247,7 @@ export function ProjectCard({
           </div>
           {description.map((paragraph, index) => {
             return (
-              <p key={index} className="text-md max-w-6xl text-justify">
+              <p key={index} className="max-w-6xl text-justify text-base">
                 {paragraph}
               </p>
             );
@@ -237,7 +255,7 @@ export function ProjectCard({
           {image && (
             <button
               onClick={handleCardClick}
-              className="relative mx-auto my-0 w-64 rounded-3xl bg-button px-4 py-2 text-lg font-medium shadow-2xl transition-colors duration-300 hover:bg-buttonHover"
+              className="relative mx-auto my-0 w-64 cursor-pointer rounded-3xl bg-button px-4 py-2 text-lg font-medium shadow-2xl transition-colors duration-300 hover:bg-buttonHover tablet:hidden"
             >
               Click to see a sneak peek
             </button>

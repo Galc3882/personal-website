@@ -25,6 +25,10 @@ const config: Config = {
       },
       screens: {
         short: { raw: "(min-height: 800px)" },
+        tablet: { raw: "(max-width: 850px)" },
+        stablet: { raw: "(max-width: 520px)" },
+        phone: { raw: "(max-width: 425px)" },
+        sphone: { raw: "(max-width: 350px)" },
       },
     },
   },

@@ -17,7 +17,7 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
     buttonsContainer?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center phone:px-2">
       <div className="relative z-0 flex items-center justify-around overflow-hidden rounded-md bg-darker">
         <motion.svg
           width="100%"
@@ -28,11 +28,11 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
         >
           <motion.rect
             x="0"
-            width="120px"
+            width={window.innerWidth < 425 ? "88px" : "120px"}
             height="100%"
             fill="black"
             animate={{
-              x: selected * 120,
+              x: selected * (window.innerWidth < 425 ? 88 : 120),
               transition: {
                 duration: 0.23,
               },
@@ -43,7 +43,7 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
         {buttons.map((button, index) => (
           <span
             key={button}
-            className={`category-buttons z-20 w-[120px] flex-1 cursor-pointer select-none py-3 text-center`}
+            className={`category-buttons z-20 w-[120px] flex-1 cursor-pointer select-none py-3 text-center phone:w-[88px] phone:text-sm`}
             onClick={() => handleButtonClick(button, index)}
           >
             {button}

@@ -15,11 +15,12 @@ export default function HomePage() {
   return (
     <>
       <Contact />
-      <div className="px-10">
+      <div className="px-10 tablet:px-5 phone:px-0">
         <About />
         <div className="h-4" />
         <CategorySelect onCategoryChange={handleCategoryChange} />
         <Cards category={category} />
+        <div className="hidden h-[50px] stablet:block" />
       </div>
     </>
   );
