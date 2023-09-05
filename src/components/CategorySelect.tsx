@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { CardCategory } from "@/types/Categories";
@@ -16,6 +18,8 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
     const buttonsContainer = document.querySelector(".category-buttons");
     buttonsContainer?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
+
+  const width = typeof window !== "undefined" ? window.innerWidth < 425 ? 88 : 120 : 120;
   return (
     <div className="flex justify-center phone:px-2">
       <div className="relative z-0 flex items-center justify-around overflow-hidden rounded-md bg-darker">
@@ -28,11 +32,11 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
         >
           <motion.rect
             x="0"
-            width={window.innerWidth < 425 ? "88px" : "120px"}
+            width={`${width}px`}
             height="100%"
             fill="black"
             animate={{
-              x: selected * (window.innerWidth < 425 ? 88 : 120),
+              x: selected * width,
               transition: {
                 duration: 0.23,
               },

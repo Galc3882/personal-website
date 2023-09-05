@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import OpenLinkIcon from "./icons/OpenLink";
 import ExpandedArrowIcon from "./icons/ExpandedArrow";

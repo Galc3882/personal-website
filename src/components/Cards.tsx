@@ -1,3 +1,5 @@
+"use client";
+
 import { ExperienceCard, EducationCard, ProjectCard } from "@/components/Card";
 import { CardCategory } from "@/types/Categories";
 import { CardData } from "@/types/CardData";
