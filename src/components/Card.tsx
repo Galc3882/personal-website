@@ -1,51 +1,109 @@
 import Image from "next/image";
+import OpenLinkIcon from "./icons/OpenLink";
 import { CardData } from "@/types/CardData";
+import { motion } from "framer-motion";
+
+const cardVariants = {
+  selected: {
+    rotateY: 180,
+    transition: { duration: 0.35 },
+  },
+  unselected: {
+    rotateY: 0,
+    transition: { duration: 0.35 },
+  },
+};
 
 export function ExperienceCard({
+  key,
   title,
   place,
   dates,
   description,
   bulletPoints,
   icon,
-}: CardData) {
+  image,
+  selectedCard,
+  handleCardClick,
+}: CardData & { key: number } & { selectedCard: boolean } & {
+  handleCardClick: () => void;
+}) {
   return (
-    <div className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg">
-      <div className="flex flex-row gap-3">
-        <div className="flex flex-col justify-center">
-          <Image
-            src={icon!}
-            alt="icon"
-            width={60}
-            height={60}
-            className="rounded-md"
-          />
-        </div>
-        <div className="flex flex-col justify-center">
-          <div className="flex flex-row items-end gap-3">
-            <h1 className={`max-w-xl text-2xl font-bold`}>{title}</h1>
-            <h2 className="text-md">{place}</h2>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: 0.15, easeIn: true, duration: 0.3 }}
+      animate={selectedCard ? "selected" : "unselected"}
+      variants={cardVariants}
+      viewport={{ once: true }}
+      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg"
+    >
+      {selectedCard && (
+        <div className="inline-block cursor-pointer" onClick={handleCardClick}>
+          <div className="text-center shadow-inner">
+            <img
+              className="rounded-3xl"
+              src={image!}
+              style={{ transform: "rotateY(180deg)" }}
+            />
+            <div
+              className="absolute bottom-0 left-0 h-1/5 w-full items-center justify-center pt-10"
+              style={{ transform: "rotateY(180deg)" }}
+            >
+              <div className="relative mx-auto my-0 w-44 rounded-3xl bg-button p-2 text-center text-lg font-medium shadow-2xl hover:bg-buttonHover">
+                Click to return
+              </div>
+            </div>
           </div>
-          <h2 className="text-md">{dates}</h2>
         </div>
-      </div>
-      {description.map((paragraph, index) => {
-        return (
-          <p key={index} className="text-md max-w-6xl text-justify">
-            {paragraph}
-          </p>
-        );
-      })}
-      <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7">
-        {bulletPoints!.map((bulletPoint, index) => {
-          return (
-            <li key={index} className="text-md max-w-6xl text-justify">
-              {bulletPoint}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+      )}
+      {!selectedCard && (
+        <>
+          <div className="flex flex-row gap-3">
+            <div className="flex flex-col justify-center">
+              <Image
+                src={icon!}
+                alt="icon"
+                width={60}
+                height={60}
+                className="rounded-md"
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex flex-row items-end gap-3">
+                <h1 className={`max-w-xl text-2xl font-bold`}>{title}</h1>
+                <h2 className="text-md">{place}</h2>
+              </div>
+              <h2 className="text-md">{dates}</h2>
+            </div>
+          </div>
+          {description.map((paragraph, index) => {
+            return (
+              <p key={index} className="text-md max-w-6xl text-justify">
+                {paragraph}
+              </p>
+            );
+          })}
+          <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7">
+            {bulletPoints!.map((bulletPoint, index) => {
+              return (
+                <li key={index} className="text-md max-w-6xl text-justify">
+                  {bulletPoint}
+                </li>
+              );
+            })}
+          </ul>
+          {image && (
+            <button
+              onClick={handleCardClick}
+              className="relative mx-auto my-0 w-64 rounded-3xl bg-button px-4 py-2 text-lg font-medium shadow-2xl transition-colors duration-300 hover:bg-buttonHover"
+            >
+              Click to see a sneak peek
+            </button>
+          )}
+        </>
+      )}
+    </motion.div>
   );
 }
 
@@ -59,7 +117,13 @@ export function EducationCard({
   icon,
 }: CardData) {
   return (
-    <div className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: 0.15, easeIn: true, duration: 0.3 }}
+      viewport={{ once: true }}
+      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg"
+    >
       <div className="flex flex-row gap-3">
         <div className="flex flex-col justify-center">
           <Image
@@ -104,29 +168,82 @@ export function EducationCard({
           );
         })}
       </ul>
-    </div>
+    </motion.div>
   );
 }
 
-export function ProjectCard({ title, dates, description, link }: CardData) {
+export function ProjectCard({
+  title,
+  dates,
+  description,
+  link,
+  image,
+  selectedCard,
+  handleCardClick,
+}: CardData & { key: number } & { selectedCard: boolean } & {
+  handleCardClick: () => void;
+}) {
   return (
-    <div className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg">
-      <div className="flex flex-row gap-3">
-        <div className="flex flex-col justify-center"></div>
-        <div className="flex flex-col justify-center">
-          <div className="flex flex-row items-end gap-3">
-            <h1 className={`max-w-xl text-2xl font-bold`}>{title}</h1>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: 0.15, easeIn: true, duration: 0.3 }}
+      animate={selectedCard ? "selected" : "unselected"}
+      variants={cardVariants}
+      viewport={{ once: true }}
+      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg"
+    >
+      {selectedCard && (
+        <div className="inline-block cursor-pointer" onClick={handleCardClick}>
+          <div className="text-center shadow-inner">
+            <img
+              className="rounded-3xl"
+              src={image!}
+              style={{ transform: "rotateY(180deg)" }}
+            />
+            <div
+              className="absolute bottom-0 left-0 h-1/5 w-full items-center justify-center pt-10"
+              style={{ transform: "rotateY(180deg)" }}
+            >
+              <div className="relative mx-auto my-0 w-44 rounded-3xl bg-button p-2 text-center text-lg font-medium shadow-2xl hover:bg-buttonHover">
+                Click to return
+              </div>
+            </div>
           </div>
-          <h2 className="text-md">{dates}</h2>
         </div>
-      </div>
-      {description.map((paragraph, index) => {
-        return (
-          <p key={index} className="text-md max-w-6xl text-justify">
-            {paragraph}
-          </p>
-        );
-      })}
-    </div>
+      )}
+      {!selectedCard && (
+        <>
+          <div className="flex flex-row justify-between gap-3">
+            <div className="flex flex-col justify-center">
+              <div className="flex flex-row items-end gap-3">
+                <h1 className={`max-w-xl text-2xl font-bold`}>{title}</h1>
+              </div>
+              <h2 className="text-md">{dates}</h2>
+            </div>
+            <div className="flex flex-col justify-center">
+              <a href={link}>
+                <OpenLinkIcon />
+              </a>
+            </div>
+          </div>
+          {description.map((paragraph, index) => {
+            return (
+              <p key={index} className="text-md max-w-6xl text-justify">
+                {paragraph}
+              </p>
+            );
+          })}
+          {image && (
+            <button
+              onClick={handleCardClick}
+              className="relative mx-auto my-0 w-64 rounded-3xl bg-button px-4 py-2 text-lg font-medium shadow-2xl transition-colors duration-300 hover:bg-buttonHover"
+            >
+              Click to see a sneak peek
+            </button>
+          )}
+        </>
+      )}
+    </motion.div>
   );
 }

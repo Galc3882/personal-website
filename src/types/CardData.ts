@@ -7,4 +7,5 @@ export interface CardData {
   subBulletPoints?: string[];
   icon?: string;
   link?: string;
+  image?: string;
 }

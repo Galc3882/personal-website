@@ -1,6 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
+import Head from "next/head";
+
+<Head>
+  <link rel="preload" href="/images/aUToronto.jpg" as="image" />
+</Head>;
 
 const mulish = Mulish({ subsets: ["latin"] });
 

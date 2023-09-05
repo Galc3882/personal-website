@@ -1,6 +1,7 @@
 import { ExperienceCard, EducationCard, ProjectCard } from "@/components/Card";
 import { CardCategory } from "@/types/Categories";
 import { CardData } from "@/types/CardData";
+import { useState } from "react";
 
 const cards: Record<CardCategory, CardData[]> = {
   Experience: [
@@ -34,6 +35,7 @@ const cards: Record<CardCategory, CardData[]> = {
         "By continually optimizing the neural network and fine-tuning the detection algorithms, I ensured that our autonomous vehicle remained on the forefront of precision and safety, setting new benchmarks in lane detection technology.",
       ],
       icon: "/images/autodrive.jpg",
+      image: "/images/aUToronto.jpg",
     },
     {
       title: "Graphical User Interface Team Lead",
@@ -133,6 +135,8 @@ const cards: Record<CardCategory, CardData[]> = {
         "This method is used for automatically labeling data points in a dataset, using a technique called 'self-supervised learning'. The technique is based on the idea that if a machine learning algorithm can learn to label data points on its own, then it can be used to label new data points that are not in the training set. This would be useful for tasks such as image classification, where it is often difficult to obtain labels for all of the data points.",
         "This repository contains two self-supervised data labeling machine learning models based on the VGG16 model and ResNet152 with multi-GPU training and automatic hyperparameter tuning that can be used for traffic light classification. The VGG16 model was able to classify the traffic light images with an accuracy of above 99% for the LISA dataset and an accuracy of above 94% for the MIT dataset. The ResNet152 model was able to classify the traffic light images with an accuracy of above 99% for the LISA dataset and an accuracy of above 98% for the MIT dataset.",
       ],
+      link: "https://github.com/Galc3882/self-supervised-data-labeling-ML",
+      image: "/images/aUToronto.jpg",
     },
     {
       title: "Dual Pivot Mechanism",
@@ -140,6 +144,7 @@ const cards: Record<CardCategory, CardData[]> = {
       description: [
         "A project for an engineering design course ESC102. The Dual-Pivot Mechanism design aims to enable hockey players with disabilities to maneuver the hockey stick easily and precisely using a joystick controller. This mechanism aims to achieve three movements that are important to hockey players; manipulating, shooting and blocking the ball. This will in turn increase their involvement in the game.",
       ],
+      link: "https://github.com/Galc3882/Dual-Pivot-Mechanism",
     },
     {
       title: "Pacman with AI in Assembly",
@@ -147,6 +152,7 @@ const cards: Record<CardCategory, CardData[]> = {
       description: [
         "An assembly language version of the classic Pacman game for the 8086 Intel processor. This project is a complete recreation of the original game, including all the original gameplay and graphics. The game is written in pure assembly language, making it one of the smallest and most efficient versions of Pacman ever created. This project is perfect for anyone who wants to learn how to program in assembly language, or for anyone who wants to create their own Pacman clone.",
       ],
+      link: "https://github.com/Galc3882/Assembly-Pacman",
     },
     {
       title: "Barrel Segmentation",
@@ -154,6 +160,7 @@ const cards: Record<CardCategory, CardData[]> = {
       description: [
         "A project that outputs the segmentation mask of orange barrels in pictures.",
       ],
+      link: "https://github.com/Galc3882/aUToronto-python-coding-challenge",
     },
   ],
 };
@@ -163,16 +170,37 @@ interface Props {
 }
 
 const Cards: React.FC<Props> = ({ category }) => {
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
+
+  const handleCardClick = (index: number) => {
+    if (selectedCard === index) setSelectedCard(null);
+    else setSelectedCard(index);
+  };
+
   return (
     <>
       {cards[category].map((card, index) => {
         switch (category) {
           case "Experience":
-            return <ExperienceCard key={index} {...card} />;
+            return (
+              <ExperienceCard
+                key={index}
+                {...card}
+                selectedCard={selectedCard === index}
+                handleCardClick={() => handleCardClick(index)}
+              />
+            );
           case "Education":
             return <EducationCard key={index} {...card} />;
           case "Projects":
-            return <ProjectCard key={index} {...card} />;
+            return (
+              <ProjectCard
+                key={index}
+                {...card}
+                selectedCard={selectedCard === index}
+                handleCardClick={() => handleCardClick(index)}
+              />
+            );
         }
       })}
     </>

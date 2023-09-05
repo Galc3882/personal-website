@@ -39,7 +39,7 @@ export default function About() {
           a minor in business and AI.
         </p>
         <a
-          className="mt-6 inline-flex gap-4 rounded-xl bg-button p-3 py-5 shadow-2xl active:shadow-none"
+          className="mt-6 inline-flex gap-4 rounded-xl bg-button p-3 py-5 shadow-2xl hover:bg-buttonHover active:shadow-none"
           href="Resume-Gal-Cohen.pdf"
         >
           Open Resume

@@ -13,6 +13,7 @@ const config: Config = {
       darker: "#1B1C1D",
       card: "#222222",
       button: "#424242",
+      buttonHover: "#525252",
       blue: "#2525B9",
       white: "#ffffff",
     },
