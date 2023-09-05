@@ -1,9 +1,11 @@
 import Image from "next/image";
 import OpenLinkIcon from "./icons/OpenLink";
+import ExpandedArrowIcon from "./icons/ExpandedArrow";
 import { CardData } from "@/types/CardData";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
-const cardVariants = {
+const cardImageVariants = {
   selected: {
     rotateY: 180,
     transition: { duration: 0.35 },
@@ -28,13 +30,14 @@ export function ExperienceCard({
 }: CardData & { listId: string } & { selectedCard: boolean } & {
   handleCardClick: () => void;
 }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ delay: 0.15, easeIn: true, duration: 0.3 }}
       animate={selectedCard ? "selected" : "unselected"}
-      variants={cardVariants}
+      variants={cardImageVariants}
       viewport={{ once: true }}
       className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
       id={listId}
@@ -88,7 +91,89 @@ export function ExperienceCard({
               </p>
             );
           })}
-          <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:ml-3 tablet:mr-0">
+          <div
+            className="hidden w-full select-none tablet:block"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <AnimatePresence mode="wait">
+              {isExpanded && (
+                <motion.div
+                  initial={{
+                    height: 0,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    height: "auto",
+                    opacity: 1,
+                    transition: {
+                      height: {
+                        duration: 0.4,
+                      },
+                      opacity: {
+                        duration: 0.25,
+                        delay: 0.15,
+                      },
+                    },
+                  }}
+                  exit={{
+                    height: 0,
+                    opacity: 0,
+                    transition: {
+                      height: {
+                        duration: 0.4,
+                      },
+                      opacity: {
+                        duration: 0.25,
+                      },
+                    },
+                  }}
+                  key="content"
+                >
+                  <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:ml-3 tablet:mr-0">
+                    {bulletPoints!.map((bulletPoint, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className="max-w-6xl text-justify text-base tablet:text-left"
+                        >
+                          {bulletPoint}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <div className="mx-auto w-12">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={isExpanded ? "expanded" : "notExpanded"}
+                  initial={{
+                    rotate: isExpanded ? -90 : 90,
+                  }}
+                  animate={{
+                    rotate: isExpanded ? 0 : 180,
+                    transition: {
+                      type: "tween",
+                      duration: 0.15,
+                      ease: "circOut",
+                    },
+                  }}
+                  exit={{
+                    rotate: isExpanded ? -90 : 90,
+                    transition: {
+                      type: "tween",
+                      duration: 0.15,
+                      ease: "circIn",
+                    },
+                  }}
+                >
+                  <ExpandedArrowIcon />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+          <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:hidden">
             {bulletPoints!.map((bulletPoint, index) => {
               return (
                 <li
@@ -124,6 +209,7 @@ export function EducationCard({
   subBulletPoints,
   icon,
 }: CardData & { listId: string }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -158,7 +244,101 @@ export function EducationCard({
           </p>
         );
       })}
-      <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:ml-3 tablet:mr-0">
+      <div
+        className="hidden w-full select-none tablet:block"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <AnimatePresence mode="wait">
+          {isExpanded && (
+            <motion.div
+              initial={{
+                height: 0,
+                opacity: 0,
+              }}
+              animate={{
+                height: "auto",
+                opacity: 1,
+                transition: {
+                  height: {
+                    duration: 0.4,
+                  },
+                  opacity: {
+                    duration: 0.25,
+                    delay: 0.15,
+                  },
+                },
+              }}
+              exit={{
+                height: 0,
+                opacity: 0,
+                transition: {
+                  height: {
+                    duration: 0.4,
+                  },
+                  opacity: {
+                    duration: 0.25,
+                  },
+                },
+              }}
+              key="content"
+            >
+              <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:ml-3 tablet:mr-0">
+                {bulletPoints!.map((bulletPoint, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className="max-w-6xl text-justify text-base tablet:text-left"
+                    >
+                      {bulletPoint}
+                      {subBulletPoints && bulletPoints!.length - 1 == index && (
+                        <ul className="ml-6 list-disc tablet:ml-3">
+                          {subBulletPoints.map((subBulletPoint, subIndex) => (
+                            <li
+                              key={subIndex}
+                              className="max-w-6xl text-justify text-base tablet:text-left"
+                            >
+                              {subBulletPoint}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div className="mx-auto w-12">
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={isExpanded ? "expanded" : "notExpanded"}
+              initial={{
+                rotate: isExpanded ? -90 : 90,
+              }}
+              animate={{
+                rotate: isExpanded ? 0 : 180,
+                transition: {
+                  type: "tween",
+                  duration: 0.15,
+                  ease: "circOut",
+                },
+              }}
+              exit={{
+                rotate: isExpanded ? -90 : 90,
+                transition: {
+                  type: "tween",
+                  duration: 0.15,
+                  ease: "circIn",
+                },
+              }}
+            >
+              <ExpandedArrowIcon />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+      <ul className="shadow-3xl mx-9 h-fit list-disc rounded-3xl leading-7 tablet:hidden">
         {bulletPoints!.map((bulletPoint, index) => {
           return (
             <li
@@ -198,13 +378,14 @@ export function ProjectCard({
 }: CardData & { listId: string } & { selectedCard: boolean } & {
   handleCardClick: () => void;
 }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ delay: 0.15, easeIn: true, duration: 0.3 }}
       animate={selectedCard ? "selected" : "unselected"}
-      variants={cardVariants}
+      variants={cardImageVariants}
       viewport={{ once: true }}
       className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
       id={listId}
@@ -245,13 +426,102 @@ export function ProjectCard({
               </a>
             </div>
           </div>
-          {description.map((paragraph, index) => {
-            return (
-              <p key={index} className="max-w-6xl text-justify text-base">
-                {paragraph}
-              </p>
-            );
-          })}
+          {description[0] && (
+            <p className="max-w-6xl text-justify text-base">{description[0]}</p>
+          )}
+          {description[1] && (
+            <div
+              className="hidden w-full select-none tablet:block"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              <AnimatePresence mode="wait">
+                {isExpanded && (
+                  <motion.div
+                    initial={{
+                      height: 0,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      height: "auto",
+                      opacity: 1,
+                      transition: {
+                        height: {
+                          duration: 0.4,
+                        },
+                        opacity: {
+                          duration: 0.25,
+                          delay: 0.15,
+                        },
+                      },
+                    }}
+                    exit={{
+                      height: 0,
+                      opacity: 0,
+                      transition: {
+                        height: {
+                          duration: 0.4,
+                        },
+                        opacity: {
+                          duration: 0.25,
+                        },
+                      },
+                    }}
+                    key="content"
+                  >
+                    {description.slice(1).map((paragraph, index) => {
+                      return (
+                        <p
+                          key={index}
+                          className="max-w-6xl text-justify text-base"
+                        >
+                          {paragraph}
+                        </p>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <div className="mx-auto w-12">
+                <AnimatePresence initial={false} mode="wait">
+                  <motion.div
+                    key={isExpanded ? "expanded" : "notExpanded"}
+                    initial={{
+                      rotate: isExpanded ? -90 : 90,
+                    }}
+                    animate={{
+                      rotate: isExpanded ? 0 : 180,
+                      transition: {
+                        type: "tween",
+                        duration: 0.15,
+                        ease: "circOut",
+                      },
+                    }}
+                    exit={{
+                      rotate: isExpanded ? -90 : 90,
+                      transition: {
+                        type: "tween",
+                        duration: 0.15,
+                        ease: "circIn",
+                      },
+                    }}
+                  >
+                    <ExpandedArrowIcon />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          )}
+          {description[1] &&
+            description.slice(1).map((paragraph, index) => {
+              return (
+                <p
+                  key={index}
+                  className="max-w-6xl text-justify text-base tablet:hidden"
+                >
+                  {paragraph}
+                </p>
+              );
+            })}
           {image && (
             <button
               onClick={handleCardClick}
