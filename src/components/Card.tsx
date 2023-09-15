@@ -48,7 +48,7 @@ export function ExperienceCard({
         <div className="inline-block cursor-pointer" onClick={handleCardClick}>
           <div className="text-center shadow-inner">
             <img
-              className="rounded-3xl"
+              className="m-auto rounded-3xl"
               src={image!}
               style={{ transform: "rotateY(180deg)" }}
             />

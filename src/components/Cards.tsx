@@ -160,7 +160,7 @@ const cards: Record<CardCategory, CardData[]> = {
         "Welcome to the GarbageGopher repository, a modern robotic solution that aims to redefine autonomous garbage collection. This project is a testament to top-tier software design, cutting-edge algorithms, and refined robotics engineering.",
       ],
       link: "https://github.com/Galc3882/GarbageGopher",
-      image: "/images/GarbageGopher.png",
+      image: "/images/GarbageGopher.jpg",
     },
     {
       title: "Self Supervised Data Labeling ML",
@@ -185,7 +185,7 @@ const cards: Record<CardCategory, CardData[]> = {
         "Objective to make hockey more inclusive by empowering players with disabilities to manipulate, shoot, and block the ball seamlessly.",
       ],
       link: "https://github.com/Galc3882/Dual-Pivot-Mechanism",
-      image: "/images/ESC102.png",
+      image: "/images/ESC102.jpg",
     },
     {
       title: "Blackjack DDQN: Deep Reinforcement Learning Model",
@@ -243,7 +243,7 @@ const cards: Record<CardCategory, CardData[]> = {
         "The ComputerPlayer class is the brain, leveraging the minimax algorithm to forecast the best moves against its human adversary.",
       ],
       link: "https://github.com/Galc3882/Chess-against-computer",
-      image: "/images/chess.png",
+      image: "/images/chess.jpg",
     },
     {
       title: "Grapher: A 3D Graph Drawing Tool",
@@ -258,7 +258,7 @@ const cards: Record<CardCategory, CardData[]> = {
         "Rotate, pan, and zoom, exploring your 3D graph from myriad perspectives.",
       ],
       link: "https://github.com/Galc3882/Grapher",
-      image: "/images/grapher.png",
+      image: "/images/grapher.jpg",
     },
   ],
 };
