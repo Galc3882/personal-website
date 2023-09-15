@@ -8,7 +8,10 @@ interface Props {
   onCategoryChange: (category: CardCategory) => void;
 }
 
-const CategorySelect = ({ onCategoryChange }: Props) => {
+const CategorySelect = ({
+  isMobile,
+  onCategoryChange,
+}: Props & { isMobile: boolean }) => {
   const buttons: CardCategory[] = ["Experience", "Education", "Projects"];
   const [selected, setSelected] = useState(0);
 
@@ -19,7 +22,7 @@ const CategorySelect = ({ onCategoryChange }: Props) => {
     buttonsContainer?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
-  const width = typeof window !== "undefined" ? window.innerWidth < 425 ? 88 : 120 : 120;
+  const width = isMobile ? 88 : 120;
   return (
     <div className="flex justify-center phone:px-2">
       <div className="relative z-0 flex items-center justify-around overflow-hidden rounded-md bg-darker">

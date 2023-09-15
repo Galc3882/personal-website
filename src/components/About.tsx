@@ -35,7 +35,7 @@ export default function About() {
           </p>
         </div>
         <a
-          className="mt-6 inline-flex gap-4 rounded-xl bg-button p-3 py-5 text-lg shadow-2xl hover:bg-buttonHover stablet:mx-auto stablet:mt-5 stablet:block stablet:w-fit stablet:py-3 phone:mt-0 phone:py-2 phone:text-base"
+          className="mt-6 inline-flex gap-4 rounded-xl bg-button p-3 py-5 text-lg shadow-2xl hover:bg-buttonHover stablet:mx-auto stablet:mt-5 stablet:block stablet:w-fit stablet:py-3 phone:mt-0 phone:whitespace-nowrap phone:py-2 phone:text-base"
           href="Resume-Gal-Cohen.pdf"
         >
           Open Resume

@@ -41,7 +41,7 @@ export function ExperienceCard({
       animate={selectedCard ? "selected" : "unselected"}
       variants={cardImageVariants}
       viewport={{ once: true }}
-      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
+      className="mx-auto my-5 flex max-w-5xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
       id={listId}
     >
       {selectedCard && (
@@ -218,7 +218,7 @@ export function EducationCard({
       whileInView={{ opacity: 1 }}
       transition={{ delay: 0.15, easeIn: true, duration: 0.3 }}
       viewport={{ once: true }}
-      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
+      className="mx-auto my-5 flex max-w-5xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
       id={listId}
     >
       <div className="flex flex-row gap-3">
@@ -389,14 +389,14 @@ export function ProjectCard({
       animate={selectedCard ? "selected" : "unselected"}
       variants={cardImageVariants}
       viewport={{ once: true }}
-      className="mx-auto my-5 flex max-w-4xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
+      className="mx-auto my-5 flex max-w-5xl flex-col gap-3 rounded-3xl bg-card p-6 drop-shadow-lg tablet:m-3 tablet:p-5 sphone:m-2 sphone:p-2"
       id={listId}
     >
       {selectedCard && (
         <div className="inline-block cursor-pointer" onClick={handleCardClick}>
           <div className="text-center shadow-inner">
             <img
-              className="rounded-3xl"
+              className="rounded-3xl m-auto"
               src={image!}
               style={{ transform: "rotateY(180deg)" }}
             />
@@ -416,7 +416,7 @@ export function ProjectCard({
           <div className="flex flex-row justify-between gap-3">
             <div className="flex flex-col justify-center">
               <div className="flex flex-row items-end gap-3">
-                <h1 className={`max-w-xl text-2xl font-bold tablet:text-lg`}>
+                <h1 className={`max-w-2xl text-2xl font-bold tablet:text-lg`}>
                   {title}
                 </h1>
               </div>
