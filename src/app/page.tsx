@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 import CategorySelect from "@/components/CategorySelect";
 import { CardCategory } from "@/types/Categories";
 import { useState } from "react";
-import { useMediaQuery } from "@material-ui/core";
+import { useMediaQuery } from '@mui/material';
 
 export default function HomePage() {
   const [category, setCategory] = useState<CardCategory>("Experience");

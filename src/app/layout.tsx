@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
 import "./globals.css";
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
@@ -27,6 +28,7 @@ export default function RootLayout({
       >
         {children}
       </body>
+      <GoogleAnalytics gaId="G-9W1V9XNW2Y" />
     </html>
   );
 }
