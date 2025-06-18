@@ -9,6 +9,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    rebase-strategy: "merge"
+    rebase-strategy: "auto"
     commit-message:
       prefix: "deps"
