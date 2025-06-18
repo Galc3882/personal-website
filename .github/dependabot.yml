@@ -9,6 +9,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 50
+      rebase-strategy: "merge"
     commit-message:
       prefix: "deps"
