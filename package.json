@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^5.15.11",
     "@mui/material": "^5.15.11",
     "@next/third-parties": "^15.3.3",
